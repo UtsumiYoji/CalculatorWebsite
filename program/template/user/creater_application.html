@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}{{ block.super }} | Creater application{% endblock title %}
+
+{% block contents %}
+
+{% load static %}
+{% load widget_tweaks %}
+{% load django_bootstrap5 %}
+
+<link rel="stylesheet" type='text/css' href="{% static 'user/creater_application.css'%}">
+
+<wrap>
+    <div>
+        <h1>Creater application</h1>
+        <p class="lead">If you want to be creater, you should submit addtional information.</p>
+        <p class="lead">Please fill in the belows, it will be displayed to the user.</p>
+    </div>
+    <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% bootstrap_form form %}
+
+        <div class="mb-3">
+            <div class="form-check">
+                <input type="checkbox" name="agreement" class="form-check-input" id="id_agreement" required>
+                <label class="form-check-label" for="id_agreement">
+                    Agree with <a href="">term of creater</a> and <a href="">pivacy policy</a>
+                </label>
+            </div>
+        </div>
+
+        {% bootstrap_button button_type="submit" content="Apply" %}
+    </form>
+</wrap>
+
+{% endblock %}
